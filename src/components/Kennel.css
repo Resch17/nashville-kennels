@@ -1,5 +1,5 @@
 /* Import the google web fonts you want to use */
-@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Yusei+Magic&display=swap');
 
 /*Typography
 --------------------------------------------------------------*/
@@ -9,7 +9,7 @@ input,
 select,
 textarea {
   color: #404040;
-  font-family: "Comfortaa", Arial, sans-serif;
+  font-family: 'Yusei Magic', sans-serif;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -20,8 +20,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Patua One", serif;
-  letter-spacing: 2px;
+  font-family: 'Fredoka One', cursive;
+  margin: 0;
 }
 
 p {
@@ -36,4 +36,17 @@ strong {
 
 address {
   margin: 0 0 1.5em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+main > h2 { 
+  margin-left: 3em;
+}
+
+.company-info {
+  margin: 1em;
 }
