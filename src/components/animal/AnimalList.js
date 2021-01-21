@@ -8,6 +8,7 @@ export const AnimalList = () => {
   const { animals, getAnimals } = useContext(AnimalContext);
 
   // useEffect - reach out to the world for something
+  // empty array as second parameter: only run function when component is first mounted to DOM
   useEffect(() => {
     console.log('AnimalList: useEffect - getAnimals');
     getAnimals();

@@ -6,9 +6,7 @@ import './Customer.css';
 export const CustomerList = () => {
   const { customers, getCustomers } = useContext(CustomerContext);
 
-  useEffect(() => {
-    getCustomers();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(getCustomers, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="customers">
