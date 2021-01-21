@@ -5,8 +5,10 @@ import './Location.css';
 
 export const LocationList = () => {
   const { locations, getLocations } = useContext(LocationContext);
-  
-  useEffect(getLocations, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    getLocations();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="locations">

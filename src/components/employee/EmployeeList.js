@@ -6,7 +6,9 @@ import './Employee.css';
 export const EmployeeList = () => {
   const { employees, getEmployees } = useContext(EmployeeContext);
 
-  useEffect(getEmployees, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    getEmployees();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="employees">
