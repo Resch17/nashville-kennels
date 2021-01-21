@@ -8,12 +8,13 @@ export const AnimalList = () => {
   const { animals, getAnimals } = useContext(AnimalContext);
 
   // useEffect - reach out to the world for something
-  // empty array as second parameter: only run function when component is first mounted to DOM
+  // empty array as second parameter === only run function when component is first mounted to DOM
   useEffect(() => {
     console.log('AnimalList: useEffect - getAnimals');
     getAnimals();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // react re-renders this component when the state of AnimalList changes - which happens when animals changes
   return (
     <div className="animals">
       {console.log('AnimalList: Render', animals)}
