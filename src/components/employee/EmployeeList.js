@@ -7,18 +7,14 @@ export const EmployeeList = () => {
   const { employees, getEmployees } = useContext(EmployeeContext);
 
   useEffect(() => {
-    console.log('EmployeeList: useEffect - getEmployees');
     getEmployees();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="employees">
-      {console.log('EmployeeList: Render', employees)}
       {employees.map((employee) => {
         return <EmployeeCard key={employee.id} employee={employee} />;
       })}
     </div>
   );
 };
-
-// TODO: next: provider, list, item, appView for customers

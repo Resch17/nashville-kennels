@@ -11,7 +11,7 @@ export const AnimalList = () => {
   useEffect(() => {
     console.log('AnimalList: useEffect - getAnimals');
     getAnimals();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="animals">
