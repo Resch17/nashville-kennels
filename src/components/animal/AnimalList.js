@@ -33,7 +33,7 @@ export const AnimalList = () => {
         Add Animal
       </button>
       <div className="animals">
-        {animals.map((animal) => {
+        {animals.sort((a,b)=>a.name.localeCompare(b.name)).map((animal) => {
           const owner = customers.find((c) => c.id === animal.customerId);
           const clinic = locations.find((l) => l.id === animal.locationId);
           return (

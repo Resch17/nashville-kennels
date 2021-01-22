@@ -68,7 +68,7 @@ export const Register = (props) => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" autoComplete="off" required />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Sign in </button>

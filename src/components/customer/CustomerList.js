@@ -12,7 +12,7 @@ export const CustomerList = () => {
 
   return (
     <div className="customers">
-      {customers.map((customer) => {
+      {customers.sort((a,b)=>a.name.localeCompare(b.name)).map((customer) => {
         return <CustomerCard key={customer.id} customer={customer} />;
       })}
     </div>

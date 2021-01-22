@@ -26,7 +26,7 @@ export const EmployeeList = () => {
         Add Employee
       </button>
       <div className="employees">
-        {employees.map((employee) => {
+        {employees.sort((a,b)=>a.name.localeCompare(b.name)).map((employee) => {
           const clinic = locations.find((l) => l.id === employee.locationId);
           return (
             <EmployeeCard
