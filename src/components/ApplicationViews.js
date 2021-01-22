@@ -16,9 +16,11 @@ import { CustomerList } from './customer/CustomerList';
 export const ApplicationViews = () => {
   return (
     <>
-      <Route exact path="/">
-        <Home />
-      </Route>
+      <CustomerProvider>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </CustomerProvider>
 
       <LocationProvider>
         <Route exact path="/locations">

@@ -24,7 +24,7 @@ export const LocationList = () => {
         Add Location
       </button>
       <div className="locations">
-        {locations.map((location) => {
+        {locations.sort((a,b)=>a.name.localeCompare(b.name)).map((location) => {
           return <LocationCard key={location.id} location={location} />;
         })}
       </div>
