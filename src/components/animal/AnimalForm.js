@@ -26,7 +26,7 @@ export const AnimalForm = () => {
 
   // get customers state and locations state on mounting of form (initial render)
   useEffect(() => {
-    getCustomers().then(getLocations);
+    getLocations().then(getCustomers);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleControlledInputChange = (event) => {
@@ -43,7 +43,7 @@ export const AnimalForm = () => {
     const customerId = parseInt(animal.customerId);
 
     if (locationId === 0 || customerId === 0) {
-      window.alert('Please select a location');
+      window.alert('Please fill in all fields');
     } else {
       animal.locationId = locationId;
       animal.customerId = customerId;

@@ -8,6 +8,7 @@ import { LocationProvider } from './location/LocationProvider';
 import { LocationList } from './location/LocationList';
 import { EmployeeProvider } from './employee/EmployeeProvider';
 import { EmployeeList } from './employee/EmployeeList';
+import { EmployeeForm } from './employee/EmployeeForm';
 import { CustomerProvider } from './customer/CustomerProvider';
 import { CustomerList } from './customer/CustomerList';
 
@@ -30,11 +31,16 @@ export const ApplicationViews = () => {
         </Route>
       </CustomerProvider>
 
-      <EmployeeProvider>
-        <Route path="/employees">
-          <EmployeeList />
-        </Route>
-      </EmployeeProvider>
+      <LocationProvider>
+        <EmployeeProvider>
+          <Route exact path="/employees">
+            <EmployeeList />
+          </Route>
+          <Route exact path="/employees/create">
+            <EmployeeForm />
+          </Route>
+        </EmployeeProvider>
+      </LocationProvider>
 
       <AnimalProvider>
         <LocationProvider>
