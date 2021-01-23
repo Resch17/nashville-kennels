@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { LocationContext } from './LocationProvider';
 import './Location.css';
 
@@ -8,7 +8,7 @@ export const LocationDetail = () => {
   const [location, setLocation] = useState({});
   const { locationId } = useParams();
 
-  const history = useHistory;
+  // const history = useHistory();
 
   useEffect(() => {
     getLocationById(locationId).then((res) => {
