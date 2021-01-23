@@ -50,3 +50,16 @@ main > h2 {
 .company-info {
   margin: 1em;
 }
+
+a {
+  color: #000000;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #000000;
+}
+
+#root {
+  padding: 1em;
+}
