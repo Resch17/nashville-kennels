@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { LocationContext } from './LocationProvider';
 import './Location.css';
 
@@ -23,13 +23,17 @@ export const LocationDetail = () => {
       <h4>Employees</h4>
       <ul className="location__employee-list">
         {location.employees?.map((e) => (
-          <li key={e.id}>{e.name}</li>
+          <li key={e.id}>
+            <Link to={`/employees/detail/${e.id}`}>{e.name}</Link>
+          </li>
         ))}
       </ul>
       <h4>Patients</h4>
       <ul className="location__animal-list">
         {location.animals?.map((a) => (
-          <li key={a.id}>{a.name}</li>
+          <li key={a.id}>
+            <Link to={`/animals/detail/${a.id}`}>{a.name}</Link>
+          </li>
         ))}
       </ul>
     </section>
