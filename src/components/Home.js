@@ -5,19 +5,19 @@ import { CustomerContext } from './customer/CustomerProvider';
 export const Home = () => {
   const { customers, getCustomers } = useContext(CustomerContext);
 
+  let userName;
+
   useEffect(() => {
     getCustomers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  
   const userId = localStorage.getItem('kennel_customer');
   const user = customers.find((c) => c.id === parseInt(userId));
-  let userName
   if (!user) {
-    userName = 'user'
+    userName = 'user';
   } else {
-    userName = user.name
+    userName = user.name;
   }
-  
 
   return (
     <>
