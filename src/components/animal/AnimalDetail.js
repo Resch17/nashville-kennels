@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AnimalContext } from './AnimalProvider';
 import './Animal.css';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export const AnimalDetail = () => {
   const { getAnimalById } = useContext(AnimalContext);
@@ -10,7 +10,7 @@ export const AnimalDetail = () => {
 
   const { animalId } = useParams();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     getAnimalById(animalId).then((res) => {

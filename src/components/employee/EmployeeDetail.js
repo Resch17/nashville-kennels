@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { EmployeeContext } from './EmployeeProvider';
 import './Employee.css';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export const EmployeeDetail = () => {
   const { getEmployeeById } = useContext(EmployeeContext);
@@ -10,7 +10,7 @@ export const EmployeeDetail = () => {
 
   const { employeeId } = useParams();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     getEmployeeById(employeeId).then((res) => {
