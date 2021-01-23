@@ -3,7 +3,7 @@ import { AnimalContext } from './AnimalProvider';
 import './Animal.css';
 import { useParams, useHistory } from 'react-router-dom';
 
-export const AnimalDetail = (params) => {
+export const AnimalDetail = () => {
   const { getAnimalById } = useContext(AnimalContext);
 
   const [animal, setAnimal] = useState({});
@@ -13,7 +13,6 @@ export const AnimalDetail = (params) => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('useEffect', animalId);
     getAnimalById(animalId).then((res) => {
       setAnimal(res);
     });

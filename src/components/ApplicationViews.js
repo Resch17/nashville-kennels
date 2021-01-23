@@ -8,9 +8,11 @@ import { AnimalDetail } from './animal/AnimalDetail';
 import { LocationProvider } from './location/LocationProvider';
 import { LocationList } from './location/LocationList';
 import { LocationForm } from './location/LocationForm';
+import { LocationDetail } from "./location/LocationDetail";
 import { EmployeeProvider } from './employee/EmployeeProvider';
 import { EmployeeList } from './employee/EmployeeList';
 import { EmployeeForm } from './employee/EmployeeForm';
+import { EmployeeDetail } from './employee/EmployeeDetail';
 import { CustomerProvider } from './customer/CustomerProvider';
 import { CustomerList } from './customer/CustomerList';
 
@@ -23,14 +25,21 @@ export const ApplicationViews = () => {
         </Route>
       </CustomerProvider>
 
-      <LocationProvider>
-        <Route exact path="/locations">
-          <LocationList />
-        </Route>
-        <Route exact path="/locations/create">
-          <LocationForm />
-        </Route>
-      </LocationProvider>
+      <AnimalProvider>
+        <EmployeeProvider>
+          <LocationProvider>
+            <Route exact path="/locations">
+              <LocationList />
+            </Route>
+            <Route exact path="/locations/create">
+              <LocationForm />
+            </Route>
+            <Route exact path="/locations/detail/:locationId(\d+)">
+            <LocationDetail />
+          </Route>
+          </LocationProvider>
+        </EmployeeProvider>
+      </AnimalProvider>
 
       <CustomerProvider>
         <Route path="/customers">
@@ -46,6 +55,9 @@ export const ApplicationViews = () => {
           <Route exact path="/employees/create">
             <EmployeeForm />
           </Route>
+          <Route exact path="/employees/detail/:employeeId(\d+)">
+            <EmployeeDetail />
+          </Route>
         </EmployeeProvider>
       </LocationProvider>
 
@@ -55,7 +67,7 @@ export const ApplicationViews = () => {
             <Route exact path="/animals">
               <AnimalList />
             </Route>
-            
+
             <Route exact path="/animals/create">
               <AnimalForm />
             </Route>
