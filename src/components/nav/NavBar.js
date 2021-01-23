@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export const NavBar = (props) => {
+  const logout = () => {
+    localStorage.clear();
+  };
+
   return (
     <ul className="navbar">
       <li className="navbar__item active">
@@ -32,7 +36,7 @@ export const NavBar = (props) => {
       </li>
       <li className="navbar__item">
         <Link className="navbar__link" to="/">
-          <button className="logout-button" onClick={localStorage.clear()}>
+          <button className="logout-button" onClick={logout}>
             Log Out
           </button>
         </Link>
