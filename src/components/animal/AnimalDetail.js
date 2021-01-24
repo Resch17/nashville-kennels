@@ -26,7 +26,7 @@ export const AnimalDetail = () => {
 
   return (
     <section className="animal">
-      <div classname="animal__info">
+      <div className="animal__info">
         <h3 className="animal__name">{animal.name}</h3>
         <div className="animal__breed">{animal.breed}</div>
         <div className="animal__location">
