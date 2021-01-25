@@ -31,8 +31,13 @@ export const AnimalForm = () => {
 
   const handleControlledInputChange = (event) => {
     const newAnimal = { ...animal };
+    let selectedVal = event.target.value
 
-    newAnimal[event.target.id] = event.target.value;
+    if (event.target.id.includes('Id')) {
+      selectedVal = parseInt(selectedVal)
+    }
+
+    newAnimal[event.target.id] = selectedVal;
     setAnimal(newAnimal);
   };
 
@@ -45,8 +50,6 @@ export const AnimalForm = () => {
     if (locationId === 0 || customerId === 0) {
       window.alert('Please fill in all fields');
     } else {
-      animal.locationId = locationId;
-      animal.customerId = customerId;
       addAnimal(animal).then(() => history.push('/animals'));
     }
   };
@@ -91,7 +94,7 @@ export const AnimalForm = () => {
           <select
             defaultValue={animal.locationId}
             onChange={handleControlledInputChange}
-            name="locationId"
+            name="location"
             id="locationId"
             className="form-control"
           >
