@@ -15,7 +15,6 @@ export const AnimalList = () => {
   // useEffect - reach out to the world for something
   // empty array as second parameter === only run function when component is first mounted to DOM
   useEffect(() => {
-    console.log('AnimalList: Initial render before data');
     getLocations().then(getCustomers).then(getAnimals);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

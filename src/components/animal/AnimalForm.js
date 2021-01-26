@@ -3,54 +3,78 @@ import { AnimalContext } from './AnimalProvider';
 import { LocationContext } from '../location/LocationProvider';
 import { CustomerContext } from '../customer/CustomerProvider';
 import './Animal.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export const AnimalForm = () => {
-  const { addAnimal } = useContext(AnimalContext);
+  const { addAnimal, getAnimalById, updateAnimal } = useContext(AnimalContext);
   const { locations, getLocations } = useContext(LocationContext);
   const { customers, getCustomers } = useContext(CustomerContext);
 
-  /*
-    With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-
-    Define the intial state of the form inputs with useState()
-  */
   const [animal, setAnimal] = useState({
     name: '',
     breed: '',
     locationId: 0,
-    customerId: 0,
+    customerId: 0
   });
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { animalId } = useParams();
 
   const history = useHistory();
 
   // get customers state and locations state on mounting of form (initial render)
   useEffect(() => {
-    getLocations().then(getCustomers);
+    getCustomers()
+      .then(getLocations)
+      .then(() => {
+        if (animalId) {
+          getAnimalById(animalId).then((animal) => {
+            setAnimal(animal);
+            setIsLoading(false);
+          });
+        } else {
+          setIsLoading(false);
+        }
+      });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleControlledInputChange = (event) => {
     const newAnimal = { ...animal };
-    let selectedVal = event.target.value
+    let selectedVal = event.target.value;
 
     if (event.target.id.includes('Id')) {
-      selectedVal = parseInt(selectedVal)
+      selectedVal = parseInt(selectedVal);
     }
 
     newAnimal[event.target.id] = selectedVal;
     setAnimal(newAnimal);
   };
 
-  const handleClickSaveAnimal = (event) => {
-    event.preventDefault();
-
+  const handleClickSaveAnimal = () => {
     const locationId = parseInt(animal.locationId);
     const customerId = parseInt(animal.customerId);
 
     if (locationId === 0 || customerId === 0) {
       window.alert('Please fill in all fields');
     } else {
-      addAnimal(animal).then(() => history.push('/animals'));
+      setIsLoading(true);
+      if (animalId) {
+        updateAnimal({
+          id: animal.id,
+          name: animal.name,
+          breed: animal.breed,
+          locationId: parseInt(animal.locationId),
+          customerId: parseInt(animal.customerId),
+        }).then(() => history.push(`/animals/detail/${animal.id}`));
+      } else {
+        addAnimal({
+          name: animal.name,
+          breed: animal.breed,
+          locationId: parseInt(animal.locationId),
+          customerId: parseInt(animal.customerId),
+        }).then(() => history.push('/animals'));
+      }
     }
   };
 
@@ -63,6 +87,7 @@ export const AnimalForm = () => {
           <input
             type="text"
             id="name"
+            name="name"
             onChange={handleControlledInputChange}
             required
             autoComplete="off"
@@ -79,6 +104,7 @@ export const AnimalForm = () => {
           <input
             type="text"
             id="breed"
+            name="breed"
             onChange={handleControlledInputChange}
             required
             autoComplete="off"
@@ -90,11 +116,11 @@ export const AnimalForm = () => {
       </fieldset>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="location">Assign to location:</label>
+          <label htmlFor="locationId">Assign to location:</label>
           <select
-            defaultValue={animal.locationId}
+            value={animal.locationId}
             onChange={handleControlledInputChange}
-            name="location"
+            name="locationId"
             id="locationId"
             className="form-control"
           >
@@ -111,8 +137,8 @@ export const AnimalForm = () => {
         <div className="form-group">
           <label htmlFor="customerId">Customer: </label>
           <select
-            defaultValue={animal.customerId}
-            name="customer"
+            value={animal.customerId}
+            name="customerId"
             id="customerId"
             onChange={handleControlledInputChange}
             className="form-control"
@@ -126,8 +152,15 @@ export const AnimalForm = () => {
           </select>
         </div>
       </fieldset>
-      <button className="btn btn-primary" onClick={handleClickSaveAnimal}>
-        Save Animal
+      <button
+        className="btn btn-primary"
+        disabled={isLoading}
+        onClick={(event) => {
+          event.preventDefault();
+          handleClickSaveAnimal();
+        }}
+      >
+        {animalId ? <>Save Animal</> : <>Add Animal</>}
       </button>
     </form>
   );
