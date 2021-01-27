@@ -38,6 +38,11 @@ export const AnimalDetail = () => {
         <button className="animal__releaseButton" onClick={handleRelease}>
           Release Animal
         </button>
+        <button className="animal__editButton" onClick={()=>{
+          history.push(`/animals/edit/${animal.id}`)
+        }}>
+          Edit Animal
+        </button>
       </div>
     </section>
   );
